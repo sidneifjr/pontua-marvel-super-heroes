@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
 import {
-  Login,
-  LoginContent,
   LoginContentForm,
   LoginContentFormDescription,
   LoginContentFormTitle,
@@ -11,69 +9,60 @@ import {
 
 import { Button } from '../../components/Button'
 
+import { Link } from 'react-router-dom'
 import atSign from '/icons/at-sign.svg'
 import eye from '/icons/eye.svg'
 import shield from '/icons/shield.svg'
-import Illustration from '/images/building.svg'
-import Logo from '/images/logo_pontua_white.svg'
 
 export const LoginPage = () => {
   const [isInputFocused, setIsInputFocused] = useState(false)
 
   return (
-    <Login>
-      <img src={Logo} alt="Pontua Logo" height="50px" width="169px" />
+    <LoginContentForm>
+      <LoginContentFormTitle>
+        Bem-vindo <span>.</span>
+      </LoginContentFormTitle>
 
-      <LoginContent>
-        <img src={Illustration} alt="Building" />
+      <LoginContentFormDescription>
+        informe as suas credenciais de acesso ao portal
+      </LoginContentFormDescription>
 
-        <LoginContentForm>
-          <LoginContentFormTitle>
-            Bem-vindo <span>.</span>
-          </LoginContentFormTitle>
+      <fieldset>
+        {!isInputFocused && <label htmlFor="email">Insira seu email</label>}
+        <input
+          type="text"
+          name="email"
+          onFocus={() => setIsInputFocused(true)}
+          onBlur={() => setIsInputFocused(false)}
+        />
 
-          <LoginContentFormDescription>
-            informe as suas credenciais de acesso ao portal
-          </LoginContentFormDescription>
+        <a href="#">
+          <img src={atSign} alt="" />
+        </a>
+      </fieldset>
 
-          <fieldset>
-            {!isInputFocused && <label htmlFor="email">Insira seu email</label>}
-            <input
-              type="text"
-              name="email"
-              onFocus={() => setIsInputFocused(true)}
-              onBlur={() => setIsInputFocused(false)}
-            />
+      <fieldset>
+        {!isInputFocused && <label htmlFor="password">Informe sua senha</label>}
 
-            <a href="#">
-              <img src={atSign} alt="" />
-            </a>
-          </fieldset>
+        <input
+          type="text"
+          name="password"
+          onFocus={() => setIsInputFocused(true)}
+          onBlur={() => setIsInputFocused(false)}
+        />
 
-          <fieldset>
-            {!isInputFocused && (
-              <label htmlFor="password">Informe sua senha</label>
-            )}
+        <a href="#">
+          <img src={eye} alt="" />
+        </a>
+      </fieldset>
 
-            <input
-              type="text"
-              name="password"
-              onFocus={() => setIsInputFocused(true)}
-              onBlur={() => setIsInputFocused(false)}
-            />
+      <Link to="/agent-selection">
+        <Button variant="disabled">enviar link</Button>
+      </Link>
 
-            <a href="#">
-              <img src={eye} alt="" />
-            </a>
-          </fieldset>
-
-          <Button variant="disabled">enviar link</Button>
-
-          <RecoverPassword to="/password-recovery">
-            <img src={shield} alt="" /> Esqueceu a senha?
-          </RecoverPassword>
-        </LoginContentForm>
-      </LoginContent>
-    </Login>
+      <RecoverPassword to="/password-recovery">
+        <img src={shield} alt="" /> Esqueceu a senha?
+      </RecoverPassword>
+    </LoginContentForm>
   )
 }
