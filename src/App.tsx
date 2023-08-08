@@ -4,8 +4,11 @@ import { ThemeProvider } from 'styled-components'
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 
+import { AgentSelectionPage } from './pages/AgentSelection'
 import { HomePage } from './pages/Home'
 import { LoginPage } from './pages/Login'
+import { PasswordFeedbackPage } from './pages/PasswordFeedback'
+import { PasswordRecoveryPage } from './pages/PasswordRecovery'
 import { ProfilePage } from './pages/Profile'
 
 const App = () => {
@@ -16,6 +19,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/password-recovery" element={<PasswordRecoveryPage />} />
+        <Route path="/password-feedback" element={<PasswordFeedbackPage />} />
+        <Route path="/agent-selection" element={<AgentSelectionPage />} />
         <Route path="/perfil" element={<ProfilePage />} />
       </Routes>
     </ThemeProvider>

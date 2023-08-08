@@ -15,6 +15,7 @@ export const defaultTheme = {
   'gray-100': '#eaecf0',
   'gray-150': '#FBFBFB',
   'gray-250': '#f5f6f8',
+  'gray-300': '#C3C3C3',
   'gray-400': '#B7B7B7',
   'gray-500': '#777777',
 } as const // avisa ao TypeScript que a variável nunca vai mudar; assim, ele "confia" que pode exibir o hex da cor na snapshot do VSCode (ctrl+space).

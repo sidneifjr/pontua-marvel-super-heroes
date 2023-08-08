@@ -1,27 +1,25 @@
 import styled, { css } from 'styled-components'
 
 const Btn = styled.button<any>`
-  border-radius: 0.375rem;
-  transition: background ease-in-out 0.2s;
-
+  width: 100%;
   border-radius: 0.625rem;
+  transition: background ease-in-out 0.2s;
 
   ${(props) => {
     switch (props.variant) {
       case 'primary':
         return css`
-          width: 100%;
           font-size: 1.5rem;
           line-height: normal;
           font-weight: 700;
           text-align: right;
           letter-spacing: -0.0975rem;
-          text-transform: uppercase;
           color: ${(props) => props.theme['gray-150']};
           background: ${(props) => props.theme['blue-600']};
-          padding: 1rem 6.69rem;
+          padding: 1rem 3.56rem;
           color: var(--gray-150, #fbfbfb);
           display: flex;
+          justify-content: center;
           align-items: center;
           gap: 0.56rem;
 
@@ -32,18 +30,20 @@ const Btn = styled.button<any>`
 
       case 'disabled':
         return css`
-          min-width: 5.6875rem;
-          ${(props) => props.theme['button-m']};
-          text-transform: uppercase;
+          background: ${(props) => props.theme['gray-300']};
           color: ${(props) => props.theme['base-text']};
           background: ${(props) => props.theme['base-button']};
-          padding: 0.41rem 0.5rem;
+          padding: 0.915rem 2rem;
           display: flex;
+          justify-content: center;
           align-items: center;
 
-          svg {
-            margin-right: 0.25rem;
-          }
+          color: ${(props) => props.theme['gray-150']};
+          font-size: 1.5rem;
+          line-height: normal;
+          text-align: right;
+          font-weight: 700;
+          letter-spacing: -0.0975rem;
 
           &:hover {
             background: ${(props) => props.theme['base-hover']};

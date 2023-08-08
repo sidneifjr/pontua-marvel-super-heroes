@@ -6,18 +6,16 @@ import {
   LoginContentForm,
   LoginContentFormDescription,
   LoginContentFormTitle,
-  RecoverPassword,
 } from './styles'
 
 import { Button } from '../../components/Button'
 
 import atSign from '/icons/at-sign.svg'
-import eye from '/icons/eye.svg'
-import shield from '/icons/shield.svg'
+import loginAlt from '/icons/login-alt.svg'
 import Illustration from '/images/building.svg'
 import Logo from '/images/logo_pontua_white.svg'
 
-export const LoginPage = () => {
+export const PasswordRecoveryPage = () => {
   const [isInputFocused, setIsInputFocused] = useState(false)
 
   return (
@@ -28,16 +26,17 @@ export const LoginPage = () => {
         <img src={Illustration} alt="Building" />
 
         <LoginContentForm>
-          <LoginContentFormTitle>
-            Bem-vindo <span>.</span>
-          </LoginContentFormTitle>
+          <LoginContentFormTitle>Recuperar senha</LoginContentFormTitle>
 
           <LoginContentFormDescription>
-            informe as suas credenciais de acesso ao portal
+            Informe o e-mail do seu cadastro. Nós estaremos realizando o envio
+            de um link com as instruções para você redefinir a sua senha.
           </LoginContentFormDescription>
 
           <fieldset>
-            {!isInputFocused && <label htmlFor="email">Insira seu email</label>}
+            {!isInputFocused && (
+              <label htmlFor="email">Informe seu e-mail</label>
+            )}
             <input
               type="text"
               name="email"
@@ -50,28 +49,10 @@ export const LoginPage = () => {
             </a>
           </fieldset>
 
-          <fieldset>
-            {!isInputFocused && (
-              <label htmlFor="password">Informe sua senha</label>
-            )}
-
-            <input
-              type="text"
-              name="password"
-              onFocus={() => setIsInputFocused(true)}
-              onBlur={() => setIsInputFocused(false)}
-            />
-
-            <a href="#">
-              <img src={eye} alt="" />
-            </a>
-          </fieldset>
-
-          <Button variant="disabled">enviar link</Button>
-
-          <RecoverPassword to="/password-recovery">
-            <img src={shield} alt="" /> Esqueceu a senha?
-          </RecoverPassword>
+          <Button variant="primary">
+            entrar
+            <img src={loginAlt} alt="" />
+          </Button>
         </LoginContentForm>
       </LoginContent>
     </Login>

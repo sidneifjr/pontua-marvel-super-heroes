@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 export const Login = styled.section`
@@ -85,6 +84,7 @@ export const LoginContentFormTitle = styled.h1`
   position: relative;
   margin-bottom: 1rem;
   display: inline-flex;
+  gap: 0.5rem;
 
   span {
     color: ${(props) => props.theme['orange-500']};
@@ -98,10 +98,10 @@ export const LoginContentFormDescription = styled.p`
   font-weight: 400;
   letter-spacing: -0.065rem;
   color: ${(props) => props.theme['gray-500']};
-  margin-bottom: 0.37rem;
+  margin-bottom: 1.63rem;
 `
 
-export const RecoverPassword = styled(Link)`
+export const RecoverPassword = styled.a`
   font-size: 0.6875rem;
   line-height: normal;
   font-weight: 400;
