@@ -15,7 +15,7 @@ import eye from '/icons/eye.svg'
 import shield from '/icons/shield.svg'
 
 export const LoginPage = () => {
-  const [isInputFocused, setIsInputFocused] = useState(false)
+  const [isInputPasswordShown, setInputPasswordShown] = useState(false)
 
   return (
     <LoginContentForm>
@@ -28,13 +28,7 @@ export const LoginPage = () => {
       </LoginContentFormDescription>
 
       <fieldset>
-        {!isInputFocused && <label htmlFor="email">Insira seu email</label>}
-        <input
-          type="text"
-          name="email"
-          onFocus={() => setIsInputFocused(true)}
-          onBlur={() => setIsInputFocused(false)}
-        />
+        <input type="text" name="email" placeholder="Insira seu email" />
 
         <a href="#">
           <img src={atSign} alt="" />
@@ -42,16 +36,16 @@ export const LoginPage = () => {
       </fieldset>
 
       <fieldset>
-        {!isInputFocused && <label htmlFor="password">Informe sua senha</label>}
-
         <input
-          type="text"
+          type={isInputPasswordShown ? 'password' : 'text'}
           name="password"
-          onFocus={() => setIsInputFocused(true)}
-          onBlur={() => setIsInputFocused(false)}
+          placeholder="Informe sua senha"
         />
 
-        <a href="#">
+        <a
+          href="#"
+          onClick={() => setInputPasswordShown(!isInputPasswordShown)}
+        >
           <img src={eye} alt="" />
         </a>
       </fieldset>

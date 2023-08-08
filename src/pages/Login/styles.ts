@@ -25,19 +25,14 @@ export const LoginContentForm = styled.form`
       color: ${(props) => props.theme['gray-400']};
       border: 0.7px solid ${(props) => props.theme['gray-400']};
 
+      &:placeholder {
+        color: ${(props) => props.theme['gray-400']};
+      }
+
       &:focus {
         color: ${(props) => props.theme['blue-500']};
         outline: 0.7px solid ${(props) => props.theme['blue-500']};
       }
-    }
-
-    label {
-      color: ${(props) => props.theme['gray-400']};
-      position: absolute;
-      top: 50%;
-      left: 0.94rem;
-      transform: translate3d(0, -50%, 0);
-      pointer-events: none;
     }
 
     a {
