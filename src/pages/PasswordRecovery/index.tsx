@@ -27,7 +27,7 @@ export const PasswordRecoveryPage = () => {
         </a>
       </fieldset>
 
-      <Button variant="primary">
+      <Button type="submit" variant="primary">
         entrar
         <img src={loginAlt} alt="" />
       </Button>

@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
 
+export const ErrorMessage = styled.span`
+  color: ${(props) => props.theme['orange-700']};
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  display: block;
+`
+
 export const LoginContentForm = styled.form`
   min-height: 27.0625rem;
   max-width: 23.75rem;
@@ -20,18 +27,22 @@ export const LoginContentForm = styled.form`
       font-weight: 700;
       letter-spacing: -0.065rem;
       background: ${(props) => props.theme.white};
+      border: 0.7px solid ${(props) => props.theme['gray-400']};
       border-radius: 0.625rem;
       padding: 1.25rem 0.94rem;
-      color: ${(props) => props.theme['gray-400']};
-      border: 0.7px solid ${(props) => props.theme['gray-400']};
+      color: ${(props) => props.theme['blue-500']};
+      transition: border cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.25s;
 
       &:placeholder {
         color: ${(props) => props.theme['gray-400']};
       }
 
       &:focus {
-        color: ${(props) => props.theme['blue-500']};
         outline: 0.7px solid ${(props) => props.theme['blue-500']};
+      }
+
+      &.error {
+        border: solid 0.7px ${(props) => props.theme['orange-700']};
       }
     }
 
