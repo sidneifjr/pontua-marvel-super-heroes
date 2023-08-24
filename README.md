@@ -9,7 +9,7 @@ Essa aplicação deve ser criada com base e utilização na api fornecida pela M
 - Qualquer dúvida poderá ser enviada por e-mail em tecnologia@pontua.com.br;
 - O prazo para finalização do teste deverá ser fornecido pelo RH;
 - Não deixe de entregar sua aplicação mesmo que não esteja pronta ou perfeita;
-- A entrega do código deverá ser feita no GitHub e após o término, notificar o time atráves do email tecnologia@pontua.com.br e gente@pontua.com.br.
+- A entrega do código deverá ser feita no GitHub e após o término, notificar o time atráves do email tecnologia@pontua.com.br e gente@pontua.com.br.
 
 Link para layout no Figma: layout
 
@@ -36,20 +36,20 @@ Link para layout no Figma: layout
   Irei selecionar o agente de minha escolha para acessar a página de perfil do agente.
 
 - Quando eu:
-  [ ] - Clicar no campo de escolha deverá ser exibido uma lista com os nomes e foto do perfil de cada agente, e ao clicar no botão entrar ser redirecionado para a tela de perfil do agente;
+  [x] - Clicar no campo de escolha deverá ser exibido uma lista com os nomes e foto do perfil de cada agente, e ao clicar no botão entrar ser redirecionado para a tela de perfil do agente;
 
 - Critérios de aceite
-  [ ] - Se não houver agente selecionado mostrar o placeholder "Selecione um agente" conforme Figma;
+  [x] - Se não houver agente selecionado mostrar o placeholder "Selecione um agente" conforme Figma;
   [ ] - Se já existir um agente selecionado e eu clicar no campo de escolha, exibir a lista de agentes com uma flag no agente já selecionado;
-  [ ] - Ao clicar no botão entrar deverá navegar para a página de perfil do agente selecionado;
-  [ ] - Ser o mais fiel possível ao layout do Figma.
+  [x] - Ao clicar no botão entrar deverá navegar para a página de perfil do agente selecionado;
+  [x] - Ser o mais fiel possível ao layout do Figma.
 
 ## Página de Perfil de Agente
 
 - Eu como usuário:
   [ ] - Ao acessar a tela preciso ver a aba de visão geral com o descritivo sobre o agente, bem como seu nome e imagem;
   [ ] - Quero poder navegar nas abas de características, conforme layout do Figma;
-  [ ] - Preciso visualizar o menu com as opções de acessar a Home, Perfil e sair do sistema.
+  [x] - Preciso visualizar o menu com as opções de acessar a Home, Perfil e sair do sistema.
 
 - Quando eu:
   [ ] - Clicar em uma das abas disponíveis daquele agente, preciso ver uma lista com as informações
@@ -137,6 +137,10 @@ Link para layout no Figma: layout
 1. Remoção automática de imports não-utilizados.
 
 https://dev.to/bornfightcompany/easily-sort-imports-and-remove-unused-declarations-on-each-save-in-vs-code-35k1
+
+2. Uso de async/await em um useEffect.
+
+https://ultimatecourses.com/blog/using-async-await-inside-react-use-effect-hook
 
 ## Decisões
 
