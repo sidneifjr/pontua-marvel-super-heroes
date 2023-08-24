@@ -1,5 +1,7 @@
 # Teste Desenvolvimento Pontua Web
 
+Projeto inspirado pela identidade visual da Pontua.
+
 Essa aplicação deve ser criada com base e utilização na api fornecida pela Marvel (https://developer.marvel.com/)
 
 Link para layout no Figma: https://www.figma.com/file/vpFeYEY1MKoR62lgybKF2b/Teste-de-Desenvolvimento-(Copy)?node-id=0%3A1&mode=dev
@@ -38,7 +40,7 @@ Link para layout no Figma: https://www.figma.com/file/vpFeYEY1MKoR62lgybKF2b/Tes
 ## Página de Perfil de Agente
 
 - Eu como usuário:
-  [ ] - Ao acessar a tela preciso ver a aba de visão geral com o descritivo sobre o agente, bem como seu nome e imagem;
+  [x] - Ao acessar a tela preciso ver a aba de visão geral com o descritivo sobre o agente, bem como seu nome e imagem;
   [ ] - Quero poder navegar nas abas de características, conforme layout do Figma;
   [x] - Preciso visualizar o menu com as opções de acessar a Home, Perfil e sair do sistema.
 
@@ -47,11 +49,11 @@ Link para layout no Figma: https://www.figma.com/file/vpFeYEY1MKoR62lgybKF2b/Tes
   daquela aba.
 
 - Critérios de aceite
-  [ ] - Exibir as informações dos agentes;
+  [x] - Exibir as informações dos agentes;
   [ ] - As abas do perfil devem ser dinâmicas de acordo com cada agente;
   [ ] - Ao clicar nas abas mostrar as listagens com as informações relativas;
-  [ ] - Exibir o menu lateral com link para Home, Perfil e Logout;
-  [ ] - Ser o mais fiel possível ao layout do Figma;
+  [x] - Exibir o menu lateral com link para Home, Perfil e Logout;
+  [x] - Ser o mais fiel possível ao layout do Figma;
 
 ## Página Home
 
@@ -105,6 +107,10 @@ Link para layout no Figma: https://www.figma.com/file/vpFeYEY1MKoR62lgybKF2b/Tes
 
   Fazer o layout para visualização mobile de acordo com sua criatividade
 
+## API
+
+https://developer.marvel.com/
+
 ## Comandos
 
 - Dev
@@ -123,10 +129,6 @@ Link para layout no Figma: https://www.figma.com/file/vpFeYEY1MKoR62lgybKF2b/Tes
 
 `yarn run cy:run`
 
-## API
-
-https://developer.marvel.com/
-
 ## Aprendizado
 
 1. Remoção automática de imports não-utilizados.
@@ -141,3 +143,5 @@ https://ultimatecourses.com/blog/using-async-await-inside-react-use-effect-hook
 
 1. Embora o **pnpm** forneça um ganho de 2x na instalação de pacotes, o mesmo realizou uma instalação incompleta do Cypress e ocasionou quebras em outras bibliotecas. Portanto,
    decidi retornar ao yarn, por enquanto.
+
+2. A API da Marvel possui uma característica: algumas entradas como "Spider-Man" exigem o hífen, porém outras como "Iron Man" necessitam de espaço. Aparentemente, isso é associado ao nome do herói em si.
