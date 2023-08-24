@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
 import { GlobalStyle } from './styles/global'
@@ -6,7 +6,6 @@ import { defaultTheme } from './styles/themes/default'
 
 import { LoginLayout } from './layouts/Login'
 import { AgentSelectionPage } from './pages/AgentSelection'
-import { HomePage } from './pages/Home'
 import { LoginPage } from './pages/Login'
 import { PasswordFeedbackPage } from './pages/PasswordFeedback'
 import { PasswordRecoveryPage } from './pages/PasswordRecovery'
@@ -18,8 +17,16 @@ const App = () => {
       <GlobalStyle />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="perfil/:id" element={<ProfilePage />} />
+        <Route path="/" element={<Navigate to="/login" />} />
+
+        <Route path="/perfil" element={<ProfilePage />} />
+
+        <Route path="/perfil/:id" element={<ProfilePage />}>
+          <Route path="perfil/:id/teams" element={<ProfilePage />} />
+          <Route path="perfil/:id/powers" element={<ProfilePage />} />
+          <Route path="perfil/:id/species" element={<ProfilePage />} />
+          <Route path="perfil/:id/authors" element={<ProfilePage />} />
+        </Route>
 
         <Route path="/" element={<LoginLayout />}>
           <Route path="/login" element={<LoginPage />} />
@@ -27,6 +34,15 @@ const App = () => {
           <Route path="/password-feedback" element={<PasswordFeedbackPage />} />
           <Route path="/agent-selection" element={<AgentSelectionPage />} />
         </Route>
+
+        <Route
+          path="*"
+          element={
+            <div>
+              <h2>404 Not Found</h2>
+            </div>
+          }
+        />
       </Routes>
     </ThemeProvider>
   )
