@@ -5,7 +5,7 @@ import eye from '/icons/eye.svg'
 import shield from '/icons/shield.svg'
 
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '../../components/Button'
 import {
   ErrorMessage,
@@ -17,6 +17,7 @@ import {
 
 export const LoginPage = () => {
   const [isInputPasswordShown, setInputPasswordShown] = useState<boolean>(false)
+  const navigate = useNavigate()
 
   const {
     register,
@@ -24,10 +25,9 @@ export const LoginPage = () => {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => console.log(data)
-
-  const activateLinkIfThereIsNoError = !errors ? '' : '/agent-selection'
-  console.log(activateLinkIfThereIsNoError)
+  const onSubmit = (data) => {
+    console.log(errors)
+  }
 
   return (
     <LoginContentForm onSubmit={handleSubmit(onSubmit)}>
@@ -67,7 +67,7 @@ export const LoginPage = () => {
       <fieldset>
         <input
           className={errors.password ? 'error' : ''}
-          type={!isInputPasswordShown ? 'text' : 'password'}
+          type={!isInputPasswordShown ? 'password' : 'text'}
           placeholder="Informe sua senha"
           {...register('password', { required: true, max: -1, maxLength: 8 })}
         />
@@ -80,11 +80,13 @@ export const LoginPage = () => {
         </a>
       </fieldset>
 
-      <Link to={activateLinkIfThereIsNoError}>
-        <Button type="submit" variant="primary">
-          enviar link
-        </Button>
-      </Link>
+      <Button
+        onClick={() => navigate('/agent-selection')}
+        type="submit"
+        variant="primary"
+      >
+        enviar link
+      </Button>
 
       <RecoverPassword to="/password-recovery">
         <img src={shield} alt="" /> Esqueceu a senha?
