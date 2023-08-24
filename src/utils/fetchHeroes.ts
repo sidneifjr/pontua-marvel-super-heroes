@@ -16,7 +16,7 @@ export const fetchHeroes = async (param: string, id: string) => {
       break
 
     case 'get-creators':
-      baseUrl = 'https://gateway.marvel.com/v1/public/creators'
+      baseUrl = `https://gateway.marvel.com/v1/public/characters/${id}/comics`
       break
 
     case 'get-species':
@@ -37,15 +37,27 @@ export const fetchHeroes = async (param: string, id: string) => {
   const hash = getHash(timestamp, privateKey, apiKey)
 
   const url = `${baseUrl}?ts=${timestamp}&apikey=${apiKey}&hash=${hash}&nameStartsWith=${id}`
+
+  // É necessário remover o parâmetro "&nameStartsWith=${id}", pois o mesmo não é suportado para o caso de uso presente em "get-creators".
+  const creatorsUrl = `${baseUrl}?ts=${timestamp}&apikey=${apiKey}&hash=${hash}`
+
   // console.log(url)
 
-  try {
-    const response = await fetch(url)
-    const data = await response.json()
-    // console.log(data)
-    return data
-  } catch (err) {
-    // console.log(err)
-    return err
+  if (param === 'get-creators') {
+    try {
+      const response = await fetch(creatorsUrl)
+      const data = await response.json()
+      return data
+    } catch (err) {
+      return err
+    }
+  } else {
+    try {
+      const response = await fetch(url)
+      const data = await response.json()
+      return data
+    } catch (err) {
+      return err
+    }
   }
 }

@@ -25,20 +25,17 @@ const IMAGE_SIZE = 'standard_medium'
 export const ProfilePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [hero, setHero] = useState<any>({})
+  const [creators, setCreators] = useState<[]>([])
   const { id } = useParams()
 
   useEffect(() => {
     fetchHeroes('get-heroes', id as string).then((response) => {
       const desiredHero = response.data.results[0]
+      // console.log(desiredHero)
+
       setHero(desiredHero)
     })
   }, [])
-
-  // useEffect(() => {
-  //   fetchHeroes('get-creators', id as string).then((response) => {
-  //     console.log(response)
-  //   })
-  // }, [])
 
   // useEffect(() => {
   //   window.addEventListener('load', () => {
@@ -49,6 +46,13 @@ export const ProfilePage = () => {
   // useEffect(() => {
   //   console.log(hero, hero.comics?.items)
   // }, [hero])
+
+  const fetchCreators = () => {
+    fetchHeroes('get-creators', hero?.id).then((response) => {
+      setCreators(response.data.results[0].creators.items)
+      // console.log(response.data.results[0].creators.items)
+    })
+  }
 
   return (
     <>
@@ -72,7 +76,9 @@ export const ProfilePage = () => {
                   <ProfileTabItem>Teams</ProfileTabItem>
                   <ProfileTabItem>Powers</ProfileTabItem>
                   <ProfileTabItem>Species</ProfileTabItem>
-                  <ProfileTabItem>Authors</ProfileTabItem>
+                  <ProfileTabItem onClick={fetchCreators}>
+                    Authors
+                  </ProfileTabItem>
                 </ProfileTabList>
 
                 <TabPanel>
@@ -96,8 +102,8 @@ export const ProfilePage = () => {
                   <ProfileInfoBlock>
                     {hero.comics && (
                       <ul>
-                        {hero.comics.items.map((item) => {
-                          return <li>{item.name}</li>
+                        {hero.comics.items.map((item, index) => {
+                          return <li key={index}>{item.name}</li>
                         })}
                       </ul>
                     )}
@@ -113,7 +119,15 @@ export const ProfilePage = () => {
                 </TabPanel>
 
                 <TabPanel>
-                  <ProfileInfoBlock>{/* <ul>{hero.}</ul> */}</ProfileInfoBlock>
+                  <ProfileInfoBlock>
+                    {creators && (
+                      <ul>
+                        {creators.map((item, index) => {
+                          return <li key={index}>{item.name}</li>
+                        })}
+                      </ul>
+                    )}
+                  </ProfileInfoBlock>
                 </TabPanel>
               </Tabs>
             </ProfileWrapper>

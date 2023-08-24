@@ -1,17 +1,8 @@
 # Teste Desenvolvimento Pontua Web
 
-Esse é o teste para desenvolvedores na Pontua Web.
-
-Sinta-se livre para editar a partir do título "Documentação da Aplicação".
-
 Essa aplicação deve ser criada com base e utilização na api fornecida pela Marvel (https://developer.marvel.com/)
 
-- Qualquer dúvida poderá ser enviada por e-mail em tecnologia@pontua.com.br;
-- O prazo para finalização do teste deverá ser fornecido pelo RH;
-- Não deixe de entregar sua aplicação mesmo que não esteja pronta ou perfeita;
-- A entrega do código deverá ser feita no GitHub e após o término, notificar o time atráves do email tecnologia@pontua.com.br e gente@pontua.com.br.
-
-Link para layout no Figma: layout
+Link para layout no Figma: https://www.figma.com/file/vpFeYEY1MKoR62lgybKF2b/Teste-de-Desenvolvimento-(Copy)?node-id=0%3A1&mode=dev
 
 ## Página de Login
 
@@ -131,6 +122,10 @@ Link para layout no Figma: layout
 - Testes E2E - Headless
 
 `yarn run cy:run`
+
+## API
+
+https://developer.marvel.com/
 
 ## Aprendizado
 
