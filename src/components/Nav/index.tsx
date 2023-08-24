@@ -25,7 +25,7 @@ export const Nav = () => {
 
         <NavMenuList>
           <NavMenuListItem>
-            <NavMenuListItemLink to="/">
+            <NavMenuListItemLink to="/home">
               <img src={Home} alt="" />
               <span>Home</span>
             </NavMenuListItemLink>

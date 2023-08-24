@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 export const NavMenu = styled.nav`
@@ -57,7 +57,7 @@ export const NavMenuListItem = styled.li`
   }
 `
 
-export const NavMenuListItemLink = styled(Link)`
+export const NavMenuListItemLink = styled(NavLink)`
   background: ${(props) => props.theme.white};
   border-radius: 0.625rem;
   padding-top: 0.44rem;
@@ -68,7 +68,8 @@ export const NavMenuListItemLink = styled(Link)`
   gap: 0.91rem;
   transition: background cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.25s;
 
-  &:hover {
+  &:hover,
+  &.active {
     background: ${(props) => props.theme['gray-250']};
   }
 

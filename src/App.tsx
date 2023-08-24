@@ -6,6 +6,7 @@ import { defaultTheme } from './styles/themes/default'
 
 import { LoginLayout } from './layouts/Login'
 import { AgentSelectionPage } from './pages/AgentSelection'
+import { HomePage } from './pages/Home'
 import { LoginPage } from './pages/Login'
 import { PasswordFeedbackPage } from './pages/PasswordFeedback'
 import { PasswordRecoveryPage } from './pages/PasswordRecovery'
@@ -18,6 +19,8 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
+
+        <Route path="/home" element={<HomePage />} />
 
         <Route path="/perfil" element={<ProfilePage />} />
 
