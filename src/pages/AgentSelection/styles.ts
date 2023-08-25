@@ -71,3 +71,18 @@ export const LoginContentFormDescription = styled.p`
   color: ${(props) => props.theme['gray-500']};
   margin-bottom: 0.37rem;
 `
+
+export const Select = styled.select`
+  width: 100%;
+  height: 2.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  color: ${(props) => props.theme['gray-900']};
+  border-radius: 0.5rem;
+  border: solid 1px ${(props) => props.theme['gray-300']};
+  background: ${(props) => props.theme.white};
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  padding: 0.62rem 2.62rem 0.62rem 0.88rem;
+  margin-bottom: 1rem;
+`

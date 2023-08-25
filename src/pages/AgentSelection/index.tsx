@@ -2,6 +2,7 @@ import {
   LoginContentForm,
   LoginContentFormDescription,
   LoginContentFormTitle,
+  Select,
 } from './styles'
 
 import { useForm } from 'react-hook-form'
@@ -35,22 +36,19 @@ export const AgentSelectionPage = () => {
         informe as suas credenciais de acesso ao portal
       </LoginContentFormDescription>
 
-      <select
-        {...register('hero')}
-        style={{ width: '100%', marginBottom: '1rem' }}
-      >
+      <Select {...register('hero')} data-cy="select">
         <option value="Selecione um agente">Selecione um agente</option>
         <option value="Captain America">Captain America</option>
         <option value="Cyclops">Cyclops</option>
         <option value="Daredevil">Daredevil</option>
         <option value="Hulk">Hulk</option>
-        <option value="Iron Men">Iron Men</option>
-        <option value="Spider Man">Spider Man</option>
+        <option value="Iron Man">Iron Man</option>
+        <option value="Spider-Man">Spider Man</option>
         <option value="Thor">Thor</option>
         <option value="Wolverine">Wolverine</option>
-      </select>
+      </Select>
 
-      <Button type="submit" variant="primary">
+      <Button type="submit" variant="primary" data-cy="submit">
         entrar
       </Button>
     </LoginContentForm>
