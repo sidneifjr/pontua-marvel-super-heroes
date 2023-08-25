@@ -5,15 +5,16 @@ import { TabPanel, Tabs } from 'react-tabs'
 
 import { fetchHeroes } from '../../utils/fetchHeroes'
 
-import { Loader } from '../../components/Loader'
 import { Nav } from '../../components/Nav'
 
 import { SearchBar } from '../../components/SearchBar'
 import { Container } from '../../components/Wrapper/styles'
+
 import {
   ProfileInfoBlock,
   ProfileInfoBlockContent,
   ProfileInfoBlockImage,
+  ProfileInfoList,
   ProfileTabItem,
   ProfileTabList,
   ProfileTitle,
@@ -23,7 +24,6 @@ import {
 const IMAGE_SIZE = 'standard_medium'
 
 export const ProfilePage = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [hero, setHero] = useState<any>({})
   const [creators, setCreators] = useState<[]>([])
   const { id } = useParams()
@@ -31,24 +31,17 @@ export const ProfilePage = () => {
   useEffect(() => {
     fetchHeroes('get-heroes', id as string).then((response) => {
       const desiredHero = response.data.results[0]
-      // console.log(desiredHero)
-
+      // console.log(response.data)
       setHero(desiredHero)
     })
-  }, [])
-
-  // useEffect(() => {
-  //   window.addEventListener('load', () => {
-  //     setIsLoading(false)
-  //   })
-  // }, [isLoading])
+  }, [id])
 
   // useEffect(() => {
   //   console.log(hero, hero.comics?.items)
   // }, [hero])
 
   const fetchCreators = () => {
-    fetchHeroes('get-creators', hero?.id).then((response) => {
+    fetchHeroes('get-creators-related-to-hero', hero?.id).then((response) => {
       setCreators(response.data.results[0].creators.items)
       // console.log(response.data.results[0].creators.items)
     })
@@ -58,82 +51,76 @@ export const ProfilePage = () => {
     <>
       <Nav />
 
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <Container>
-            <SearchBar />
+      <Container>
+        <SearchBar />
 
-            <ProfileWrapper>
-              <ProfileTitle>
-                Perfil <span>{hero.name}</span>
-              </ProfileTitle>
+        <ProfileWrapper>
+          <ProfileTitle>
+            Perfil <span>{hero?.name}</span>
+          </ProfileTitle>
 
-              <Tabs>
-                <ProfileTabList>
-                  <ProfileTabItem>Visão Geral</ProfileTabItem>
-                  <ProfileTabItem>Teams</ProfileTabItem>
-                  <ProfileTabItem>Powers</ProfileTabItem>
-                  <ProfileTabItem>Species</ProfileTabItem>
-                  <ProfileTabItem onClick={fetchCreators}>
-                    Authors
-                  </ProfileTabItem>
-                </ProfileTabList>
+          <Tabs>
+            <ProfileTabList>
+              <ProfileTabItem data-cy="Visão Geral">Visão Geral</ProfileTabItem>
+              <ProfileTabItem data-cy="Teams">Teams</ProfileTabItem>
+              <ProfileTabItem data-cy="Powers">Powers</ProfileTabItem>
+              <ProfileTabItem data-cy="Species">Species</ProfileTabItem>
+              <ProfileTabItem data-cy="Authors" onClick={fetchCreators}>
+                Authors
+              </ProfileTabItem>
+            </ProfileTabList>
 
-                <TabPanel>
-                  <ProfileInfoBlock>
-                    {hero.thumbnail && (
-                      <ProfileInfoBlockImage
-                        src={`${hero.thumbnail.path}/${IMAGE_SIZE}.${hero.thumbnail.extension}`}
-                        alt=""
-                      />
-                    )}
+            <TabPanel>
+              <ProfileInfoBlock>
+                {hero?.thumbnail && (
+                  <ProfileInfoBlockImage
+                    src={`${hero.thumbnail.path}/${IMAGE_SIZE}.${hero.thumbnail.extension}`}
+                    alt=""
+                  />
+                )}
 
-                    <ProfileInfoBlockContent>
-                      <h3>{hero.name}</h3>
+                <ProfileInfoBlockContent>
+                  <h3>{hero?.name}</h3>
 
-                      {hero.description && <p>{hero.description}</p>}
-                    </ProfileInfoBlockContent>
-                  </ProfileInfoBlock>
-                </TabPanel>
+                  {hero?.description ? (
+                    <p>{hero.description}</p>
+                  ) : (
+                    'Não há descrição disponível no momento.'
+                  )}
+                </ProfileInfoBlockContent>
+              </ProfileInfoBlock>
+            </TabPanel>
 
-                <TabPanel>
-                  <ProfileInfoBlock>
-                    {hero.comics && (
-                      <ul>
-                        {hero.comics.items.map((item, index) => {
-                          return <li key={index}>{item.name}</li>
-                        })}
-                      </ul>
-                    )}
-                  </ProfileInfoBlock>
-                </TabPanel>
+            <TabPanel>
+              {hero?.series && (
+                <ProfileInfoList>
+                  {hero.series.items.map((item, index) => {
+                    return <li key={index}>{item.name}</li>
+                  })}
+                </ProfileInfoList>
+              )}
+            </TabPanel>
 
-                <TabPanel>
-                  <p>tab 3</p>
-                </TabPanel>
+            <TabPanel>
+              <p>tab 3</p>
+            </TabPanel>
 
-                <TabPanel>
-                  <p>tab 4</p>
-                </TabPanel>
+            <TabPanel>
+              <p>tab 4</p>
+            </TabPanel>
 
-                <TabPanel>
-                  <ProfileInfoBlock>
-                    {creators && (
-                      <ul>
-                        {creators.map((item, index) => {
-                          return <li key={index}>{item.name}</li>
-                        })}
-                      </ul>
-                    )}
-                  </ProfileInfoBlock>
-                </TabPanel>
-              </Tabs>
-            </ProfileWrapper>
-          </Container>
-        </>
-      )}
+            <TabPanel>
+              {creators && (
+                <ProfileInfoList>
+                  {creators.map((item, index) => {
+                    return <li key={index}>{item.name}</li>
+                  })}
+                </ProfileInfoList>
+              )}
+            </TabPanel>
+          </Tabs>
+        </ProfileWrapper>
+      </Container>
     </>
   )
 }

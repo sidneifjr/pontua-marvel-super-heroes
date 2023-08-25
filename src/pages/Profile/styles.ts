@@ -81,6 +81,21 @@ export const ProfileInfoBlock = styled.div`
   gap: 1.94rem;
 `
 
+export const ProfileInfoList = styled.ul`
+  list-style: initial;
+  list-style-position: inside;
+  display: flex;
+  flex-direction: column;
+  column-gap: 1rem;
+
+  li {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    color: ${(props) => props.theme['gray-500']};
+  }
+`
+
 export const ProfileInfoBlockImage = styled.img`
   width: 5.625rem;
   height: 5.625rem;

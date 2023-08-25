@@ -9,14 +9,20 @@ const getHash = (ts: string, secretKey: string, publicKey: string) => {
 
 export const fetchHeroes = async (param: string, id: string) => {
   let baseUrl
+  const heroId = id
+
+  const timestamp = Date.now().toString()
+  const apiKey = API_KEY
+  const privateKey = PRIVATE_KEY
+  const hash = getHash(timestamp, privateKey, apiKey)
 
   switch (param) {
     case 'get-heroes':
       baseUrl = 'https://gateway.marvel.com/v1/public/characters'
       break
 
-    case 'get-creators':
-      baseUrl = `https://gateway.marvel.com/v1/public/characters/${id}/comics`
+    case 'get-creators-related-to-hero':
+      baseUrl = `https://gateway.marvel.com/v1/public/characters/${heroId}/comics`
       break
 
     case 'get-species':
@@ -31,19 +37,12 @@ export const fetchHeroes = async (param: string, id: string) => {
       break
   }
 
-  const timestamp = Date.now().toString()
-  const apiKey = API_KEY
-  const privateKey = PRIVATE_KEY
-  const hash = getHash(timestamp, privateKey, apiKey)
-
-  const url = `${baseUrl}?ts=${timestamp}&apikey=${apiKey}&hash=${hash}&nameStartsWith=${id}`
+  const url = `${baseUrl}?ts=${timestamp}&apikey=${apiKey}&hash=${hash}&nameStartsWith=${heroId}`
 
   // É necessário remover o parâmetro "&nameStartsWith=${id}", pois o mesmo não é suportado para o caso de uso presente em "get-creators".
   const creatorsUrl = `${baseUrl}?ts=${timestamp}&apikey=${apiKey}&hash=${hash}`
 
-  // console.log(url)
-
-  if (param === 'get-creators') {
+  if (param === 'get-creators-related-to-hero') {
     try {
       const response = await fetch(creatorsUrl)
       const data = await response.json()
