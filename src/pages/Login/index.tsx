@@ -15,6 +15,11 @@ import {
   RecoverPassword,
 } from './styles'
 
+interface IForm {
+  email: string
+  password: string
+}
+
 export const LoginPage = () => {
   const [isInputPasswordShown, setInputPasswordShown] = useState<boolean>(false)
   const navigate = useNavigate()
@@ -23,10 +28,12 @@ export const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm<IForm>()
 
-  const onSubmit = (data) => {
-    console.log(errors)
+  const onSubmit = (data: IForm) => {
+    if (data) {
+      navigate('/agent-selection')
+    }
   }
 
   return (
@@ -69,7 +76,7 @@ export const LoginPage = () => {
           className={errors.password ? 'error' : ''}
           type={!isInputPasswordShown ? 'password' : 'text'}
           placeholder="Informe sua senha"
-          {...register('password', { required: true, max: -1, maxLength: 8 })}
+          {...register('password', { required: true, maxLength: 8 })}
         />
 
         <a
@@ -80,11 +87,7 @@ export const LoginPage = () => {
         </a>
       </fieldset>
 
-      <Button
-        onClick={() => navigate('/agent-selection')}
-        type="submit"
-        variant="primary"
-      >
+      <Button type="submit" variant="primary">
         enviar link
       </Button>
 
