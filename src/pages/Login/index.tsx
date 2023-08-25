@@ -31,6 +31,7 @@ export const LoginPage = () => {
   } = useForm<IForm>()
 
   const onSubmit = (data: IForm) => {
+    console.log(errors)
     if (data) {
       navigate('/agent-selection')
     }
@@ -58,6 +59,7 @@ export const LoginPage = () => {
           type="text"
           placeholder="Insira seu email"
           {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
+          data-cy="email"
         />
 
         <a href="#">
@@ -77,6 +79,7 @@ export const LoginPage = () => {
           type={!isInputPasswordShown ? 'password' : 'text'}
           placeholder="Informe sua senha"
           {...register('password', { required: true, maxLength: 8 })}
+          data-cy="password"
         />
 
         <a
@@ -87,7 +90,7 @@ export const LoginPage = () => {
         </a>
       </fieldset>
 
-      <Button type="submit" variant="primary">
+      <Button type="submit" variant="primary" data-cy="submit-btn">
         enviar link
       </Button>
 
