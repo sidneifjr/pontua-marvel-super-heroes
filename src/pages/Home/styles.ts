@@ -8,10 +8,9 @@ export const HeroList = styled.ul`
   padding-bottom: 2rem;
   padding-left: 1.69rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.63rem;
   flex: 1;
-  display: flex;
-  flex-wrap: wrap;
 `
 
 export const HeroListItem = styled.li`
