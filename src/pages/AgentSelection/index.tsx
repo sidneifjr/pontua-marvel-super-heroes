@@ -13,22 +13,16 @@ import { ErrorMessage } from '../Login/styles'
 
 export const AgentSelectionPage = () => {
   const [isError, setIsError] = useState<boolean>(false)
+  const navigate = useNavigate()
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       hero: '',
     },
   })
 
-  const navigate = useNavigate()
-
   const handleFormSubmit = (data: { hero: string }) => {
     const hero = data.hero.toLowerCase()
-    console.log(hero)
 
     if (hero === '' || hero === 'selecione um agente') {
       setIsError(true)
@@ -37,15 +31,6 @@ export const AgentSelectionPage = () => {
       navigate(`/perfil/${hero}`)
       setIsError(false)
     }
-
-    // if (hero === 'Selecione um agente') {
-    //   console.log('no value selected')
-    //   return
-    // } else {
-    // }
-
-    // Se eu quisesse armazenar mais de um herói, deveria fazer assim.
-    // setHeroSelected((state) => [data.hero, ...state])
   }
 
   return (

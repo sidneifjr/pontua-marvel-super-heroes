@@ -31,7 +31,6 @@ export const LoginPage = () => {
   } = useForm<IForm>()
 
   const onSubmit = (data: IForm) => {
-    console.log(errors)
     if (data) {
       navigate('/agent-selection')
     }
