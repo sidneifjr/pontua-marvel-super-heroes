@@ -7,13 +7,12 @@ import { fetchHeroes } from '../../utils/fetchHeroes'
 
 import { Nav } from '../../components/Nav'
 
-import { SearchBar } from '../../components/SearchBar'
 import { Container } from '../../components/Wrapper/styles'
 
+import { motion } from 'framer-motion'
 import {
   ProfileInfoBlock,
   ProfileInfoBlockContent,
-  ProfileInfoBlockImage,
   ProfileInfoList,
   ProfileTabItem,
   ProfileTabList,
@@ -31,19 +30,13 @@ export const ProfilePage = () => {
   useEffect(() => {
     fetchHeroes('get-heroes', id as string).then((response) => {
       const desiredHero = response.data.results[0]
-      // console.log(response.data)
       setHero(desiredHero)
     })
   }, [id])
 
-  // useEffect(() => {
-  //   console.log(hero, hero.comics?.items)
-  // }, [hero])
-
   const fetchCreators = () => {
     fetchHeroes('get-creators-related-to-hero', hero?.id).then((response) => {
       setCreators(response.data.results[0].creators.items)
-      // console.log(response.data.results[0].creators.items)
     })
   }
 
@@ -52,8 +45,6 @@ export const ProfilePage = () => {
       <Nav />
 
       <Container>
-        <SearchBar />
-
         <ProfileWrapper>
           <ProfileTitle>
             Perfil <span>{hero?.name}</span>
@@ -72,21 +63,40 @@ export const ProfilePage = () => {
 
             <TabPanel>
               <ProfileInfoBlock>
-                {hero?.thumbnail && (
-                  <ProfileInfoBlockImage
+                {hero?.thumbnail ? (
+                  <motion.img
                     src={`${hero.thumbnail.path}/${IMAGE_SIZE}.${hero.thumbnail.extension}`}
                     alt=""
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    style={{
+                      width: '5.625rem',
+                      height: '5.625rem',
+                      borderRadius: '50%',
+                    }}
+                  ></motion.img>
+                ) : (
+                  <img
+                    src=""
+                    alt=""
+                    style={{
+                      width: '5.625rem',
+                      height: '5.625rem',
+                      borderRadius: '50%',
+                      background: '#ddd',
+                    }}
                   />
                 )}
 
                 <ProfileInfoBlockContent>
-                  <h3>{hero?.name}</h3>
+                  <motion.h3 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                    {hero?.name}
+                  </motion.h3>
 
-                  {hero?.description ? (
-                    <p>{hero.description}</p>
-                  ) : (
-                    'Não há descrição disponível no momento.'
-                  )}
+                  <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                    {hero?.description ||
+                      'Não há descrição disponível no momento.'}
+                  </motion.p>
                 </ProfileInfoBlockContent>
               </ProfileInfoBlock>
             </TabPanel>
@@ -94,8 +104,16 @@ export const ProfilePage = () => {
             <TabPanel>
               {hero?.series && (
                 <ProfileInfoList>
-                  {hero.series.items.map((item, index) => {
-                    return <li key={index}>{item.name}</li>
+                  {hero.series.items.map((item: {}, index: number) => {
+                    return (
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      >
+                        {item.name}
+                      </motion.li>
+                    )
                   })}
                 </ProfileInfoList>
               )}
@@ -113,7 +131,15 @@ export const ProfilePage = () => {
               {creators && (
                 <ProfileInfoList>
                   {creators.map((item, index) => {
-                    return <li key={index}>{item.name}</li>
+                    return (
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      >
+                        {item.name}
+                      </motion.li>
+                    )
                   })}
                 </ProfileInfoList>
               )}

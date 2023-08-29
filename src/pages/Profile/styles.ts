@@ -96,12 +96,6 @@ export const ProfileInfoList = styled.ul`
   }
 `
 
-export const ProfileInfoBlockImage = styled.img`
-  width: 5.625rem;
-  height: 5.625rem;
-  border-radius: 50%;
-`
-
 export const ProfileInfoBlockContent = styled.div`
   h3 {
     height: 2.18069rem;
