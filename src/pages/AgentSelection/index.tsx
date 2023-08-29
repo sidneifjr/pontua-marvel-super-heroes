@@ -5,22 +5,44 @@ import {
   Select,
 } from './styles'
 
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../../components/Button'
+import { ErrorMessage } from '../Login/styles'
 
 export const AgentSelectionPage = () => {
-  const navigate = useNavigate()
+  const [isError, setIsError] = useState<boolean>(false)
 
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       hero: '',
     },
   })
 
+  const navigate = useNavigate()
+
   const handleFormSubmit = (data: { hero: string }) => {
     const hero = data.hero.toLowerCase()
-    navigate(`/perfil/${hero}`)
+    console.log(hero)
+
+    if (hero === '' || hero === 'selecione um agente') {
+      setIsError(true)
+      return
+    } else {
+      navigate(`/perfil/${hero}`)
+      setIsError(false)
+    }
+
+    // if (hero === 'Selecione um agente') {
+    //   console.log('no value selected')
+    //   return
+    // } else {
+    // }
 
     // Se eu quisesse armazenar mais de um herói, deveria fazer assim.
     // setHeroSelected((state) => [data.hero, ...state])
@@ -36,8 +58,17 @@ export const AgentSelectionPage = () => {
         informe as suas credenciais de acesso ao portal
       </LoginContentFormDescription>
 
-      <Select {...register('hero')} data-cy="select">
-        <option value="Selecione um agente">Selecione um agente</option>
+      {isError ? (
+        <ErrorMessage className="error-message">Escolha um herói</ErrorMessage>
+      ) : (
+        ''
+      )}
+
+      <Select
+        className={isError ? 'error' : ''}
+        {...register('hero')}
+        data-cy="select"
+      >
         <option value="Captain America">Captain America</option>
         <option value="Cyclops">Cyclops</option>
         <option value="Daredevil">Daredevil</option>

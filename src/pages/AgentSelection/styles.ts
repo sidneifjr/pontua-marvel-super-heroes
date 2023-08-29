@@ -85,4 +85,8 @@ export const Select = styled.select`
   box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
   padding: 0.62rem 2.62rem 0.62rem 0.88rem;
   margin-bottom: 1rem;
+
+  &.error {
+    border: solid 0.7px ${(props) => props.theme['orange-700']};
+  }
 `
