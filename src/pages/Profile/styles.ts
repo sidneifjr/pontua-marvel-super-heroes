@@ -16,6 +16,7 @@ export const ProfileTitle = styled.h1`
   text-transform: capitalize;
   color: ${(props) => props.theme['blue-600']};
   margin-bottom: 1.44rem;
+  display: flex;
 
   span {
     font-weight: 300;
@@ -27,7 +28,7 @@ export const ProfileTitle = styled.h1`
       content: '/';
       color: ${(props) => props.theme['orange-500']};
       position: absolute;
-      left: 0;
+      left: 0.3rem;
     }
   }
 `
