@@ -21,7 +21,9 @@ export const PasswordFeedbackPage = () => {
       </LoginContentFormDescription>
 
       <Link to="/login">
-        <Button variant="primary">voltar para o login</Button>
+        <Button variant="primary" type="submit">
+          voltar para o login
+        </Button>
       </Link>
     </LoginContentForm>
   )
