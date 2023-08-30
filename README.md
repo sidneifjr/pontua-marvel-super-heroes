@@ -1,4 +1,4 @@
-# Teste Desenvolvimento Pontua Web
+# Pontua's Marvel Super Heroes
 
 Projeto inspirado pela identidade visual da Pontua.
 
@@ -58,23 +58,23 @@ Link para layout no Figma: https://www.figma.com/file/vpFeYEY1MKoR62lgybKF2b/Tes
 ## Página Home
 
 - Eu como usuário:
-  [ ] - Desejo visualizar uma lista de cards com fotos de perfil e um resumo de personagens;
+  [x] - Desejo visualizar uma lista de cards com fotos de perfil e um resumo de personagens;
   [ ] - Quero poder navegar na lista pela paginação no final da página;
-  [ ] - Quando eu clicar no campo de pesquisa e digitar o nome do agente, me mostre somente os personagens que contém aquele termo buscado.
+  [x] - Quando eu clicar no campo de pesquisa e digitar o nome do agente, me mostre somente os personagens que contém aquele termo buscado.
 
 - Quando eu:
-  [ ] - Clicar no card do personagem, deverei ser redirecionado para a página de perfil do personagem escolhido;
-  [ ] - Fizer uma busca, o sistema deverá exibir na lista somente os personagens que contém aquele nome.
+  [x] - Clicar no card do personagem, deverei ser redirecionado para a página de perfil do personagem escolhido;
+  [x] - Fizer uma busca, o sistema deverá exibir na lista somente os personagens que contém aquele nome.
   [ ] - Clicar no botão "Próxima" deverá exibir os próximos cards da lista (próxima página);
   [ ] - Clicar no botão "Anterior" deverá exibir os cards anteriores da lista (página anterior);
   [ ] - Quando eu clicar no botão com número de páginação, exibir os cards relativos aquela página selecionada.
 
 - Critérios de aceite
-  [ ] - Exibir resumo e foto de perfil;
-  [ ] - Listagem mínima de 11 personagens
-  [ ] - Exibição de no mínimo na primeira página
+  [x] - Exibir resumo e foto de perfil;
+  [x] - Listagem mínima de 11 personagens
+  [x] - Exibição de no mínimo na primeira página
   [ ] - Exibição de no máximo 10 personagens por página;
-  [ ] - Ao clicar em um card ser redirecionado à página de perfil do mesmo;
+  [x] - Ao clicar em um card ser redirecionado à página de perfil do mesmo;
   [ ] - Ser o mais fiel possível ao layout do Figma;
 
 - Opcional
@@ -106,10 +106,6 @@ Link para layout no Figma: https://www.figma.com/file/vpFeYEY1MKoR62lgybKF2b/Tes
   usuário, sendo assim também deverá ter uma chamada mockada;
 
   Fazer o layout para visualização mobile de acordo com sua criatividade
-
-## API
-
-https://developer.marvel.com/
 
 ## Comandos
 
