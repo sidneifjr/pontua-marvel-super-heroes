@@ -19,10 +19,27 @@ import { fetchHeroes } from '../../utils/fetchHeroes'
 import { motion } from 'framer-motion'
 import Search from '/icons/search.svg'
 
+interface ISearchResults {
+  comics: object[]
+  description: string
+  events: object[]
+  id: number
+  modified: string
+  name: string
+  resourceURI: string
+  series: object[]
+  stories: object[]
+  thumbnail: {
+    extension: string
+    path: string
+  }
+  urls: object[]
+}
+
 const IMAGE_SIZE = 'portrait_medium'
 
 export const HomePage = () => {
-  const [searchResults, setSearchResults] = useState<unknown[]>([])
+  const [searchResults, setSearchResults] = useState<ISearchResults[]>([])
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -37,7 +54,7 @@ export const HomePage = () => {
     })
   }
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: { search: string }) => {
     requestData('get-heroes', data.search as string)
   }
 
@@ -46,7 +63,7 @@ export const HomePage = () => {
     requestData('get-heroes', 'a' as string)
   }, [])
 
-  const heroListing = searchResults?.map((searchResultsItem: any) => {
+  const heroListing = searchResults?.map((searchResultsItem) => {
     return (
       <HeroListItem key={searchResultsItem.id}>
         <motion.div
