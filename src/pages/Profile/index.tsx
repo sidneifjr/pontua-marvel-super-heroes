@@ -25,6 +25,7 @@ import {
 export const ProfilePage = () => {
   const [hero, setHero] = useState<IHero>({})
   const [creators, setCreators] = useState<[]>([])
+  const { name, description, thumbnail, comics, stories, events } = hero
   const { id } = useParams()
 
   useEffect(() => {
@@ -49,7 +50,7 @@ export const ProfilePage = () => {
       <Container>
         <ProfileWrapper>
           <ProfileTitle>
-            Perfil <span>{hero?.name}</span>
+            Perfil <span>{name}</span>
           </ProfileTitle>
 
           <Tabs>
@@ -65,9 +66,9 @@ export const ProfilePage = () => {
 
             <TabPanel>
               <ProfileInfoBlock>
-                {hero?.thumbnail ? (
+                {thumbnail ? (
                   <motion.img
-                    src={`${hero.thumbnail.path}/${IMAGE_SIZES.standard_medium}.${hero.thumbnail.extension}`}
+                    src={`${thumbnail.path}/${IMAGE_SIZES.standard_medium}.${thumbnail.extension}`}
                     alt=""
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -92,21 +93,20 @@ export const ProfilePage = () => {
 
                 <ProfileInfoBlockContent>
                   <motion.h3 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                    {hero?.name}
+                    {name}
                   </motion.h3>
 
                   <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                    {hero?.description ||
-                      'Não há descrição disponível no momento.'}
+                    {description || 'Não há descrição disponível no momento.'}
                   </motion.p>
                 </ProfileInfoBlockContent>
               </ProfileInfoBlock>
             </TabPanel>
 
             <TabPanel>
-              {hero?.comics && (
+              {comics && (
                 <ProfileInfoList>
-                  {hero.comics.items.map((item: object, index: number) => {
+                  {comics.items.map((item: object, index: number) => {
                     return (
                       <motion.li
                         key={index}
@@ -122,9 +122,9 @@ export const ProfilePage = () => {
             </TabPanel>
 
             <TabPanel>
-              {hero?.events?.items.length ? (
+              {events?.items.length ? (
                 <ProfileInfoList>
-                  {hero.events.items.map((item: object, index: number) => {
+                  {events.items.map((item: object, index: number) => {
                     return (
                       <motion.li
                         key={index}
@@ -142,9 +142,9 @@ export const ProfilePage = () => {
             </TabPanel>
 
             <TabPanel>
-              {hero?.stories?.items.length ? (
+              {stories?.items.length ? (
                 <ProfileInfoList>
-                  {hero.stories.items.map((item: object, index: number) => {
+                  {stories.items.map((item: object, index: number) => {
                     return (
                       <motion.li
                         key={index}
