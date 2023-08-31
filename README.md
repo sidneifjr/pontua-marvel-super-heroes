@@ -41,17 +41,17 @@ Link para layout no Figma: https://www.figma.com/file/vpFeYEY1MKoR62lgybKF2b/Tes
 
 - Eu como usuário:
   [x] - Ao acessar a tela preciso ver a aba de visão geral com o descritivo sobre o agente, bem como seu nome e imagem;
-  [ ] - Quero poder navegar nas abas de características, conforme layout do Figma;
+  [x] - Quero poder navegar nas abas de características, conforme layout do Figma;
   [x] - Preciso visualizar o menu com as opções de acessar a Home, Perfil e sair do sistema.
 
 - Quando eu:
-  [ ] - Clicar em uma das abas disponíveis daquele agente, preciso ver uma lista com as informações
+  [x] - Clicar em uma das abas disponíveis daquele agente, preciso ver uma lista com as informações
   daquela aba.
 
 - Critérios de aceite
   [x] - Exibir as informações dos agentes;
-  [ ] - As abas do perfil devem ser dinâmicas de acordo com cada agente;
-  [ ] - Ao clicar nas abas mostrar as listagens com as informações relativas;
+  [x] - As abas do perfil devem ser dinâmicas de acordo com cada agente;
+  [x] - Ao clicar nas abas mostrar as listagens com as informações relativas;
   [x] - Exibir o menu lateral com link para Home, Perfil e Logout;
   [x] - Ser o mais fiel possível ao layout do Figma;
 

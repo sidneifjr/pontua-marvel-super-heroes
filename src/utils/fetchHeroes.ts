@@ -25,14 +25,6 @@ export const fetchHeroes = async (param: string, id: string) => {
       baseUrl = `https://gateway.marvel.com/v1/public/characters/${heroId}/comics`
       break
 
-    case 'get-species':
-      baseUrl = 'https://gateway.marvel.com/v1/public/characters'
-      break
-
-    case 'get-powers':
-      baseUrl = 'https://gateway.marvel.com/v1/public/characters'
-      break
-
     default:
       break
   }
