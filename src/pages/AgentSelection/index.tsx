@@ -1,3 +1,12 @@
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { IFormData } from '../../interfaces/interfaces'
+
+import { Button } from '../../components/Button'
+
+import { ErrorMessage } from '../Login/styles'
+
 import {
   LoginContentForm,
   LoginContentFormDescription,
@@ -5,23 +14,17 @@ import {
   Select,
 } from './styles'
 
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import { Button } from '../../components/Button'
-import { ErrorMessage } from '../Login/styles'
-
 export const AgentSelectionPage = () => {
   const [isError, setIsError] = useState<boolean>(false)
   const navigate = useNavigate()
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      hero: '',
+      hero: 'Selecione um agente',
     },
   })
 
-  const handleFormSubmit = (data: { hero: string }) => {
+  const handleFormSubmit = (data: IFormData) => {
     const hero = data.hero.toLowerCase()
 
     if (hero === '' || hero === 'selecione um agente') {

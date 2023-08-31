@@ -1,3 +1,15 @@
+import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+
+import { IMAGE_SIZES } from '../../utils/constants'
+import { fetchHeroes } from '../../utils/fetchHeroes'
+
+import { IHero, ISearchFormData } from '../../interfaces/interfaces'
+
+import { Nav } from '../../components/Nav'
+import { Container } from '../../components/Wrapper/styles'
+
 import {
   HeroList,
   HeroListItem,
@@ -9,37 +21,10 @@ import {
   SearchBoxField,
 } from './styles'
 
-import { useForm } from 'react-hook-form'
-
-import { useEffect, useState } from 'react'
-import { Nav } from '../../components/Nav'
-import { Container } from '../../components/Wrapper/styles'
-import { fetchHeroes } from '../../utils/fetchHeroes'
-
-import { motion } from 'framer-motion'
 import Search from '/icons/search.svg'
 
-interface ISearchResults {
-  comics: object[]
-  description: string
-  events: object[]
-  id: number
-  modified: string
-  name: string
-  resourceURI: string
-  series: object[]
-  stories: object[]
-  thumbnail: {
-    extension: string
-    path: string
-  }
-  urls: object[]
-}
-
-const IMAGE_SIZE = 'portrait_medium'
-
 export const HomePage = () => {
-  const [searchResults, setSearchResults] = useState<ISearchResults[]>([])
+  const [searchResults, setSearchResults] = useState<IHero[]>([])
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -48,19 +33,19 @@ export const HomePage = () => {
   })
 
   const requestData = (param: string, value: string) => {
-    fetchHeroes(param, value as string).then((response) => {
+    fetchHeroes(param, value).then((response) => {
       const searchedHeroes = response.data.results
       setSearchResults(searchedHeroes)
     })
   }
 
-  const onSubmit = (data: { search: string }) => {
-    requestData('get-heroes', data.search as string)
+  const onSubmit = (data: ISearchFormData) => {
+    requestData('get-heroes', data.search)
   }
 
   // Requisição inicial, somente ao carregar a página.
   useEffect(() => {
-    requestData('get-heroes', 'a' as string)
+    requestData('get-heroes', 'a')
   }, [])
 
   const heroListing = searchResults?.map((searchResultsItem) => {
@@ -75,7 +60,7 @@ export const HomePage = () => {
             to={`/perfil/${searchResultsItem?.name.toLowerCase()}`}
           >
             <img
-              src={`${searchResultsItem.thumbnail.path}/${IMAGE_SIZE}.${searchResultsItem.thumbnail.extension}`}
+              src={`${searchResultsItem.thumbnail.path}/${IMAGE_SIZES.portrait_medium}.${searchResultsItem.thumbnail.extension}`}
               alt="teste"
             />
 

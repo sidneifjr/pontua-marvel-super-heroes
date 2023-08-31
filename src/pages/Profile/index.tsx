@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
 
+import { motion } from 'framer-motion'
 import { useParams } from 'react-router-dom'
 import { TabPanel, Tabs } from 'react-tabs'
 
+import { IMAGE_SIZES } from '../../utils/constants'
 import { fetchHeroes } from '../../utils/fetchHeroes'
 
 import { Nav } from '../../components/Nav'
-
 import { Container } from '../../components/Wrapper/styles'
 
-import { motion } from 'framer-motion'
+import { IHero } from '../../interfaces/interfaces'
+
 import {
   ProfileInfoBlock,
   ProfileInfoBlockContent,
@@ -20,10 +22,8 @@ import {
   ProfileWrapper,
 } from './styles'
 
-const IMAGE_SIZE = 'standard_medium'
-
 export const ProfilePage = () => {
-  const [hero, setHero] = useState<any>({})
+  const [hero, setHero] = useState<IHero>({})
   const [creators, setCreators] = useState<[]>([])
   const { id } = useParams()
 
@@ -35,9 +35,11 @@ export const ProfilePage = () => {
   }, [id])
 
   const fetchCreators = () => {
-    fetchHeroes('get-creators-related-to-hero', hero?.id).then((response) => {
-      setCreators(response.data.results[0].creators.items)
-    })
+    fetchHeroes('get-creators-related-to-hero', hero?.id as string).then(
+      (response) => {
+        setCreators(response.data.results[0].creators.items)
+      }
+    )
   }
 
   return (
@@ -53,9 +55,9 @@ export const ProfilePage = () => {
           <Tabs>
             <ProfileTabList>
               <ProfileTabItem data-cy="Visão Geral">Visão Geral</ProfileTabItem>
-              <ProfileTabItem data-cy="Teams">Teams</ProfileTabItem>
-              <ProfileTabItem data-cy="Powers">Powers</ProfileTabItem>
-              <ProfileTabItem data-cy="Species">Species</ProfileTabItem>
+              <ProfileTabItem data-cy="Comics">Comics</ProfileTabItem>
+              <ProfileTabItem data-cy="Events">Events</ProfileTabItem>
+              <ProfileTabItem data-cy="Stories">Stories</ProfileTabItem>
               <ProfileTabItem data-cy="Authors" onClick={fetchCreators}>
                 Authors
               </ProfileTabItem>
@@ -65,7 +67,7 @@ export const ProfilePage = () => {
               <ProfileInfoBlock>
                 {hero?.thumbnail ? (
                   <motion.img
-                    src={`${hero.thumbnail.path}/${IMAGE_SIZE}.${hero.thumbnail.extension}`}
+                    src={`${hero.thumbnail.path}/${IMAGE_SIZES.standard_medium}.${hero.thumbnail.extension}`}
                     alt=""
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -102,9 +104,9 @@ export const ProfilePage = () => {
             </TabPanel>
 
             <TabPanel>
-              {hero?.series && (
+              {hero?.comics && (
                 <ProfileInfoList>
-                  {hero.series.items.map((item: {}, index: number) => {
+                  {hero.comics.items.map((item: object, index: number) => {
                     return (
                       <motion.li
                         key={index}
@@ -120,11 +122,43 @@ export const ProfilePage = () => {
             </TabPanel>
 
             <TabPanel>
-              <p>tab 3</p>
+              {hero?.events?.items.length ? (
+                <ProfileInfoList>
+                  {hero.events.items.map((item: object, index: number) => {
+                    return (
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      >
+                        {item.name}
+                      </motion.li>
+                    )
+                  })}
+                </ProfileInfoList>
+              ) : (
+                <p>Not applicable</p>
+              )}
             </TabPanel>
 
             <TabPanel>
-              <p>tab 4</p>
+              {hero?.stories?.items.length ? (
+                <ProfileInfoList>
+                  {hero.stories.items.map((item: object, index: number) => {
+                    return (
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      >
+                        {item.name}
+                      </motion.li>
+                    )
+                  })}
+                </ProfileInfoList>
+              ) : (
+                <p>Not applicable</p>
+              )}
             </TabPanel>
 
             <TabPanel>
