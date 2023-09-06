@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { motion } from 'framer-motion'
 import { useParams } from 'react-router-dom'
 import { TabPanel, Tabs } from 'react-tabs'
+
+import { HeroContext } from '../../contexts/HeroContext'
 
 import { IMAGE_SIZES } from '../../utils/constants'
 import { fetchHeroes } from '../../utils/fetchHeroes'
@@ -29,12 +31,15 @@ export const ProfilePage = () => {
   const { name, description, thumbnail, comics, stories, events } = hero
   const { id } = useParams()
 
+  const { setSelectedHero } = useContext(HeroContext)
+
   useEffect(() => {
     fetchHeroes('get-heroes', id as string).then((response) => {
       const desiredHero = response.data.results[0]
       setHero(desiredHero)
+      setSelectedHero(name)
     })
-  }, [id])
+  }, [id, name, setSelectedHero])
 
   const fetchCreators = () => {
     fetchHeroes('get-creators-related-to-hero', hero?.id as string).then(
