@@ -1,3 +1,9 @@
+import { ReactNode } from 'react'
+
+export interface IHeroProvider {
+  children: ReactNode
+}
+
 export interface IFormData {
   hero: string
 }
@@ -6,69 +12,35 @@ export interface ISearchFormData {
   search: string
 }
 
+export interface IHeroProperties {
+  available: number
+  collectionURI: string
+
+  items: [
+    {
+      resourceURI: string
+      name: string
+    },
+  ]
+
+  returned: number
+}
+
 export interface IHero {
-  comics: {
-    available: number
-    collectionURI: string
-
-    items: [
-      {
-        resourceURI: string
-        name: string
-      },
-    ]
-
-    returned: number
-  }
+  comics: IHeroProperties
 
   description: string
 
-  events: {
-    available: number
-    collectionURI: string
-
-    items: [
-      {
-        resourceURI: string
-        name: string
-      },
-    ]
-
-    returned: number
-  }
+  events: IHeroProperties
 
   id: number | string
   modified: string
   name: string
   resourceURI: string
 
-  series: {
-    available: number
-    collectionURI: string
+  series: IHeroProperties
 
-    items: [
-      {
-        resourceURI: string
-        name: string
-      },
-    ]
-
-    returned: number
-  }
-
-  stories: {
-    available: number
-    collectionURI: string
-
-    items: [
-      {
-        resourceURI: string
-        name: string
-      },
-    ]
-
-    returned: number
-  }
+  stories: IHeroProperties
 
   thumbnail: {
     extension: string

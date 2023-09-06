@@ -1,11 +1,7 @@
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { IMAGE_SIZES } from '../../utils/constants'
-import { fetchHeroes } from '../../utils/fetchHeroes'
-
-import { IHero, ISearchFormData } from '../../interfaces/interfaces'
 
 import { Nav } from '../../components/Nav'
 import { Container } from '../../components/Wrapper/styles'
@@ -21,10 +17,16 @@ import {
   SearchBoxField,
 } from './styles'
 
+import { useContext } from 'react'
+import { HeroContext } from '../../contexts/HeroContext'
+
+import { IHero } from '../../interfaces/interfaces'
 import Search from '/icons/search.svg'
 
 export const HomePage = () => {
-  const [searchResults, setSearchResults] = useState<IHero[]>([])
+  const { searchResults, submitHandler } = useContext(HeroContext)
+
+  // console.log(searchResults, submitHandler)
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -32,23 +34,7 @@ export const HomePage = () => {
     },
   })
 
-  const requestData = (param: string, value: string) => {
-    fetchHeroes(param, value).then((response) => {
-      const searchedHeroes = response.data.results
-      setSearchResults(searchedHeroes)
-    })
-  }
-
-  const onSubmit = (data: ISearchFormData) => {
-    requestData('get-heroes', data.search)
-  }
-
-  // Requisição inicial, somente ao carregar a página.
-  useEffect(() => {
-    requestData('get-heroes', 'a')
-  }, [])
-
-  const heroListing = searchResults?.map((searchResultsItem) => {
+  const heroListing = searchResults?.map((searchResultsItem: IHero) => {
     return (
       <HeroListItem key={searchResultsItem.id}>
         <motion.div
@@ -78,13 +64,12 @@ export const HomePage = () => {
       </HeroListItem>
     )
   })
-
   return (
     <>
       <Nav />
 
       <Container>
-        <SearchBox onSubmit={handleSubmit(onSubmit)}>
+        <SearchBox onSubmit={handleSubmit(submitHandler)}>
           <SearchBoxField>
             <label htmlFor="search">
               <img src={Search} alt="" />

@@ -23,7 +23,8 @@ import {
 } from './styles'
 
 export const ProfilePage = () => {
-  const [hero, setHero] = useState<IHero>({})
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [hero, setHero] = useState<IHero>({} as any)
   const [creators, setCreators] = useState<[]>([])
   const { name, description, thumbnail, comics, stories, events } = hero
   const { id } = useParams()
@@ -106,7 +107,7 @@ export const ProfilePage = () => {
             <TabPanel>
               {comics && (
                 <ProfileInfoList>
-                  {comics.items.map((item: object, index: number) => {
+                  {comics.items.map((item: any, index: number) => {
                     return (
                       <motion.li
                         key={index}
@@ -124,7 +125,7 @@ export const ProfilePage = () => {
             <TabPanel>
               {events?.items.length ? (
                 <ProfileInfoList>
-                  {events.items.map((item: object, index: number) => {
+                  {events.items.map((item: any, index: number) => {
                     return (
                       <motion.li
                         key={index}
@@ -144,7 +145,7 @@ export const ProfilePage = () => {
             <TabPanel>
               {stories?.items.length ? (
                 <ProfileInfoList>
-                  {stories.items.map((item: object, index: number) => {
+                  {stories.items.map((item: any, index: number) => {
                     return (
                       <motion.li
                         key={index}
@@ -164,7 +165,7 @@ export const ProfilePage = () => {
             <TabPanel>
               {creators && (
                 <ProfileInfoList>
-                  {creators.map((item, index) => {
+                  {creators.map((item: any, index: number) => {
                     return (
                       <motion.li
                         key={index}

@@ -107,6 +107,11 @@ Link para layout no Figma: https://www.figma.com/file/vpFeYEY1MKoR62lgybKF2b/Tes
 
   Fazer o layout para visualização mobile de acordo com sua criatividade
 
+- [x] Context API.
+- [ ] Paginação com os itens exibidos em Home.
+- [ ] Exibir nome do herói atualmente selecionado, na aba "Perfil".
+- [ ] JWT.
+
 ## Comandos
 
 - Dev
@@ -140,4 +145,4 @@ https://ultimatecourses.com/blog/using-async-await-inside-react-use-effect-hook
 1. Embora o **pnpm** forneça um ganho de 2x na instalação de pacotes, o mesmo realizou uma instalação incompleta do Cypress e ocasionou quebras em outras bibliotecas. Portanto,
    decidi retornar ao yarn, por enquanto.
 
-2. A API da Marvel possui uma característica: algumas entradas como "Spider-Man" exigem o hífen, porém outras como "Iron Man" necessitam de espaço. Aparentemente, isso é associado ao nome do herói em si.
+2. A API da Marvel possui uma característica peculiar: algumas entradas como "Spider-Man" exigem o hífen, porém outras como "Iron Man" necessitam de espaço. Aparentemente, isso é associado ao nome do herói em si.
