@@ -33,6 +33,12 @@ export const NavMenuList = styled.ul`
 `
 
 export const NavMenuListItem = styled.li`
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
   &.logout {
     position: relative;
     padding-top: 1.75rem;
@@ -64,6 +70,7 @@ export const NavMenuListItemLink = styled(NavLink)`
   padding-bottom: 0.44rem;
   padding-left: 0.5rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 0.91rem;
   transition: background cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.25s;
@@ -78,11 +85,28 @@ export const NavMenuListItemLink = styled(NavLink)`
     width: 1.25rem;
   }
 
-  span {
-    font-size: 0.8125rem;
+  span,
+  .badge {
     line-height: normal;
     font-weight: 500;
-    color: ${(props) => props.theme.black};
     letter-spacing: -0.02438rem;
+  }
+
+  span {
+    font-size: 0.8125rem;
+    color: ${(props) => props.theme.black};
+
+    &:not(.badge) {
+      flex: 1;
+    }
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    color: ${(props) => props.theme.white};
+    background: ${(props) => props.theme['blue-500']};
+    border-radius: 10px;
+    padding: 4px 7px;
+    display: block;
   }
 `

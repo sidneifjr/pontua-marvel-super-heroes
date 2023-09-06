@@ -3,8 +3,14 @@ import { useForm } from 'react-hook-form'
 
 import { IMAGE_SIZES } from '../../utils/constants'
 
+import { SetStateAction, useContext } from 'react'
+import { HeroContext } from '../../contexts/HeroContext'
+import { IHero } from '../../interfaces/interfaces'
+
 import { Nav } from '../../components/Nav'
 import { Container } from '../../components/Wrapper/styles'
+
+import Search from '/icons/search.svg'
 
 import {
   HeroList,
@@ -17,22 +23,19 @@ import {
   SearchBoxField,
 } from './styles'
 
-import { useContext } from 'react'
-import { HeroContext } from '../../contexts/HeroContext'
-
-import { IHero } from '../../interfaces/interfaces'
-import Search from '/icons/search.svg'
-
 export const HomePage = () => {
-  const { searchResults, submitHandler } = useContext(HeroContext)
-
-  // console.log(searchResults, submitHandler)
+  const { searchResults, submitHandler, setSelectedHero } =
+    useContext(HeroContext)
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
       search: '',
     },
   })
+
+  const handleSelectHero = (value: SetStateAction<string>) => {
+    setSelectedHero(value)
+  }
 
   const heroListing = searchResults?.map((searchResultsItem: IHero) => {
     return (
@@ -44,6 +47,7 @@ export const HomePage = () => {
         >
           <HeroListItemLink
             to={`/perfil/${searchResultsItem?.name.toLowerCase()}`}
+            onClick={() => handleSelectHero(searchResultsItem.name)}
           >
             <img
               src={`${searchResultsItem.thumbnail.path}/${IMAGE_SIZES.portrait_medium}.${searchResultsItem.thumbnail.extension}`}
@@ -64,6 +68,15 @@ export const HomePage = () => {
       </HeroListItem>
     )
   })
+
+  const showHeroListing = () => {
+    return searchResults.length ? (
+      heroListing
+    ) : (
+      <p>No corresponding heroes found. Please try again</p>
+    )
+  }
+
   return (
     <>
       <Nav />
@@ -83,13 +96,7 @@ export const HomePage = () => {
           </SearchBoxField>
         </SearchBox>
 
-        <HeroList>
-          {searchResults.length ? (
-            heroListing
-          ) : (
-            <p>No corresponding heroes found. Please try again</p>
-          )}
-        </HeroList>
+        <HeroList>{showHeroListing()}</HeroList>
       </Container>
     </>
   )

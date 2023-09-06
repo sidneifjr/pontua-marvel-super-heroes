@@ -8,12 +8,17 @@ import {
   NavMenuListItemLink,
 } from './styles'
 
+import { useContext } from 'react'
+import { HeroContext } from '../../contexts/HeroContext'
+
 import CurvedArrow from '/icons/corner-up-left.svg'
 import Logo from '/icons/logo.svg'
 import Home from '/icons/menu.svg'
 import Profile from '/icons/perfil.svg'
 
 export const Nav = () => {
+  const { selectedHero } = useContext(HeroContext)
+
   return (
     <aside>
       <NavMenu>
@@ -31,10 +36,13 @@ export const Nav = () => {
             </NavMenuListItemLink>
           </NavMenuListItem>
 
-          <NavMenuListItem>
-            <NavMenuListItemLink to="/perfil">
+          <NavMenuListItem className={selectedHero ? '' : 'disabled'}>
+            <NavMenuListItemLink
+              to={selectedHero ? `/perfil/${selectedHero}` : '/perfil/'}
+            >
               <img src={Profile} alt="" />
               <span>Perfil</span>
+              {selectedHero && <span className="badge">{selectedHero}</span>}
             </NavMenuListItemLink>
           </NavMenuListItem>
 

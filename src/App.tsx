@@ -7,6 +7,8 @@ import { LoginLayout } from './layouts/Login'
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 
+import { Nav } from './components/Nav'
+
 import { AgentSelectionPage } from './pages/AgentSelection'
 import { HomePage } from './pages/Home'
 import { LoginPage } from './pages/Login'
@@ -43,9 +45,13 @@ const App = () => {
           <Route
             path="*"
             element={
-              <div>
-                <h2>404 Not Found</h2>
-              </div>
+              <>
+                <Nav />
+
+                <div>
+                  <h2>404 Not Found</h2>
+                </div>
+              </>
             }
           />
         </Routes>

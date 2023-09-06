@@ -79,16 +79,16 @@ Link para layout no Figma: https://www.figma.com/file/vpFeYEY1MKoR62lgybKF2b/Tes
 
 - Opcional
 
-  ## Página Recuperação de Senha
+## Página Recuperação de Senha
 
-  Eu como usuário:
-  Irei inserir o email que realizei o cadastro na plataforma no campo disponivel e, clicarei no botão enviar link.
+Eu como usuário:
+Irei inserir o email que realizei o cadastro na plataforma no campo disponivel e, clicarei no botão enviar link.
 
-  Quando eu:
-  [ ] - Clicar no botão de enviar link, deverá aparecer a mensagem de envio com sucesso.
+Quando eu:
+[ ] - Clicar no botão de enviar link, deverá aparecer a mensagem de envio com sucesso.
 
-  - Critérios de aceite
-    [ ] - Ser o mais fiel possível ao layout do Figma;
+- Critérios de aceite
+  [ ] - Ser o mais fiel possível ao layout do Figma;
 
 ## Instruções específicas para o desenvolvimento frontend
 
@@ -139,6 +139,14 @@ https://dev.to/bornfightcompany/easily-sort-imports-and-remove-unused-declaratio
 2. Uso de async/await em um useEffect.
 
 https://ultimatecourses.com/blog/using-async-await-inside-react-use-effect-hook
+
+3. Embora o Zod permita uma melhor validação de tipagens além do alcance do TypeScript, surigram algumas falhas na integração com o React Hook Form.
+
+4. A pattern de composition é uma opção viável para futuros projetos; buscar inspiração na estrutura do Radix UI.
+
+5. Considerar uma biblioteca de UI ou semelhante, para agilizar o desenvolvimento (shadcn, por exemplo).
+
+6. styled-components possui considerações sobre o runtime, portanto Stitches é uma melhor opção para futuros projetos; é importante notar que as APIs possuem relativamente poucas diferenças entre uma e outra, assim muito do que já existe é migrável.
 
 ## Decisões
 

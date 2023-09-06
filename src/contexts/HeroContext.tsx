@@ -9,9 +9,12 @@ export const HeroContext = createContext({} as HeroContextProps)
 type HeroContextProps = {
   searchResults: IHero[]
   submitHandler: (data: ISearchFormData) => void
+  selectedHero: string
+  setSelectedHero: React.Dispatch<React.SetStateAction<string>>
 }
 
 export function HeroProvider({ children }: { children: ReactNode }) {
+  const [selectedHero, setSelectedHero] = useState('')
   const [searchResults, setSearchResults] = useState<IHero[]>([])
 
   const requestData = (param: string, value: string) => {
@@ -31,7 +34,9 @@ export function HeroProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <HeroContext.Provider value={{ searchResults, submitHandler }}>
+    <HeroContext.Provider
+      value={{ searchResults, submitHandler, selectedHero, setSelectedHero }}
+    >
       {children}
     </HeroContext.Provider>
   )
