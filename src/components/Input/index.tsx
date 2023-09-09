@@ -12,8 +12,6 @@ export const InputField = (props: IInputField) => {
     <>
       <Input
         className={props.className}
-        // type={props.text}
-        // placeholder={props.placeholder}
         {...props}
       />
       {props.text && <span>{props.text}</span>}
