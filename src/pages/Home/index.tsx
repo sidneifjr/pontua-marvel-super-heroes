@@ -70,11 +70,7 @@ export const HomePage = () => {
   })
 
   const showHeroListing = () => {
-    return searchResults.length ? (
-      heroListing
-    ) : (
-      <p>No corresponding heroes found. Please try again</p>
-    )
+    return searchResults.length && heroListing
   }
 
   return (
