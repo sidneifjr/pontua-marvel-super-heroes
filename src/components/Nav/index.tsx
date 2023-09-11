@@ -38,7 +38,11 @@ export const Nav = () => {
 
           <NavMenuListItem className={selectedHero ? '' : 'disabled'}>
             <NavMenuListItemLink
-              to={selectedHero ? `/perfil/${selectedHero}` : '/perfil/'}
+              to={
+                selectedHero
+                  ? `/perfil/${selectedHero.toLowerCase()}`
+                  : '/perfil/'
+              }
             >
               <img src={Profile} alt="" />
               <span>Perfil</span>
