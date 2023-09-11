@@ -108,8 +108,8 @@ Quando eu:
   Fazer o layout para visualização mobile de acordo com sua criatividade
 
 - [x] Context API.
+- [x] Exibir nome do herói atualmente selecionado, na aba "Perfil".
 - [ ] Paginação com os itens exibidos em Home.
-- [ ] Exibir nome do herói atualmente selecionado, na aba "Perfil".
 - [ ] JWT.
 
 ## Comandos
@@ -154,3 +154,9 @@ https://ultimatecourses.com/blog/using-async-await-inside-react-use-effect-hook
    decidi retornar ao yarn, por enquanto.
 
 2. A API da Marvel possui uma característica peculiar: algumas entradas como "Spider-Man" exigem o hífen, porém outras como "Iron Man" necessitam de espaço. Aparentemente, isso é associado ao nome do herói em si.
+
+3. Também em relação ao nome de cada herói, a API não força que o mesmo seja capitalizado ou não; de ambas as formas, a requisição é feita corretamente.
+
+Por exemplo: "Aaron Stack" vs "aaron%20stack".
+
+Porém, para manter uma melhor padronização, apliquei o tratamento de lowercase à URL.
