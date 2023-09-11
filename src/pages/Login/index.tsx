@@ -21,7 +21,8 @@ interface IForm {
 }
 
 export const LoginPage = () => {
-  const [isInputPasswordShown, setInputPasswordShown] = useState<boolean>(false)
+  const [isInputPasswordShown, setIsInputPasswordShown] =
+    useState<boolean>(false)
   const navigate = useNavigate()
 
   const {
@@ -83,7 +84,7 @@ export const LoginPage = () => {
 
         <a
           href="#"
-          onClick={() => setInputPasswordShown(!isInputPasswordShown)}
+          onClick={() => setIsInputPasswordShown(!isInputPasswordShown)}
         >
           <img src={eye} alt="" />
         </a>
