@@ -148,6 +148,8 @@ https://ultimatecourses.com/blog/using-async-await-inside-react-use-effect-hook
 
 6. styled-components possui considerações sobre o runtime, portanto Stitches é uma melhor opção para futuros projetos; é importante notar que as APIs possuem relativamente poucas diferenças entre uma e outra, assim muito do que já existe é migrável.
 
+7. Considerar a pattern de Polimorfismo, abordada em: https://www.youtube.com/watch?v=zhgbanI0UV8
+
 ## Decisões
 
 1. Embora o **pnpm** forneça um ganho de 2x na instalação de pacotes, o mesmo realizou uma instalação incompleta do Cypress e ocasionou quebras em outras bibliotecas. Portanto,
@@ -155,7 +157,7 @@ https://ultimatecourses.com/blog/using-async-await-inside-react-use-effect-hook
 
 2. A API da Marvel possui uma característica peculiar: algumas entradas como "Spider-Man" exigem o hífen, porém outras como "Iron Man" necessitam de espaço. Aparentemente, isso é associado ao nome do herói em si.
 
-3. Também em relação ao nome de cada herói, a API não força que o mesmo seja capitalizado ou não; de ambas as formas, a requisição é feita corretamente.
+3. Também em relação ao nome de cada herói, a API não exige capitalização, permitindo a realização da requisição sem falhas.
 
 Por exemplo: "Aaron Stack" vs "aaron%20stack".
 
