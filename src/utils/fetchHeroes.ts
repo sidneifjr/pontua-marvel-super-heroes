@@ -1,8 +1,5 @@
 import MD5 from 'crypto-js/md5'
 
-const API_KEY = 'f0691ee95c237c571bfa7188f253fdbe'
-const PRIVATE_KEY = '33a138311a51fad342fb28576cfb5f62b72b1b3f'
-
 const getHash = (ts: string, secretKey: string, publicKey: string) => {
   return MD5(ts + secretKey + publicKey).toString()
 }
@@ -12,8 +9,8 @@ export const fetchHeroes = async (param: string, id: string) => {
   const heroId = id
 
   const timestamp = Date.now().toString()
-  const apiKey = API_KEY
-  const privateKey = PRIVATE_KEY
+  const apiKey = import.meta.env.VITE_MARVEL_API_KEY
+  const privateKey = import.meta.env.VITE_MARVEL_PRIVATE_KEY
   const hash = getHash(timestamp, privateKey, apiKey)
 
   switch (param) {
