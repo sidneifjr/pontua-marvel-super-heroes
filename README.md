@@ -150,6 +150,8 @@ https://ultimatecourses.com/blog/using-async-await-inside-react-use-effect-hook
 
 7. Considerar a pattern de Polimorfismo, abordada em: https://www.youtube.com/watch?v=zhgbanI0UV8
 
+8. https://stackoverflow.com/questions/71083110/vue-uncaught-referenceerror-process-is-not-defined
+
 ## Decisões
 
 1. Embora o **pnpm** forneça um ganho de 2x na instalação de pacotes, o mesmo realizou uma instalação incompleta do Cypress e ocasionou quebras em outras bibliotecas. Portanto,
