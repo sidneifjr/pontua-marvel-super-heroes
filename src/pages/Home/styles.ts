@@ -10,7 +10,6 @@ export const HeroList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 0.63rem;
-  flex: 1;
 `
 
 export const HeroListItem = styled.li`
